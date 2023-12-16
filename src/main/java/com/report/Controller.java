@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
 @RestController
@@ -23,9 +25,12 @@ public class Controller {
 
       @PostMapping
       public ResponseEntity<byte[]> genDocument(@RequestBody Parameters params) throws JRException {
+            LocalDateTime fecha = LocalDateTime.now();
+            DateTimeFormatter df = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm");
+
             HashMap<String, Object> p = new HashMap<>();
             p.put("comprobante_id", params.getComprobante_id());
-            p.put("fecha", params.getFecha());
+            p.put("fecha", df.format(fecha));
             p.put("total", params.getTotal());
             // classpath es el directorio resources
             p.put("imageDir", "classpath:/static/");
@@ -42,6 +47,6 @@ public class Controller {
 
       @Getter @Setter
       static private class Parameters {
-            private String comprobante_id, fecha, total;
+            private String comprobante_id, total;
       }
 }
