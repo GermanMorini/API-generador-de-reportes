@@ -24,7 +24,9 @@ public class Controller {
       private final String templatePath = "src/main/resources/templates/";
 
       @PostMapping("doc1")
-      public ResponseEntity<byte[]> genRepo1(@RequestBody Reporte1 params) throws JRException {
+      public ResponseEntity<byte[]> genRepo1(@RequestBody Reporte1 params) {
+            try {
+
             LocalDateTime fecha = LocalDateTime.now();
             DateTimeFormatter df = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm");
 
@@ -35,19 +37,32 @@ public class Controller {
             p.put("comprobante_id", params.comprobante_id);
             p.put("fecha", df.format(fecha));
             p.put("total", params.total);
+            checkParameters(p);
 
             JasperReport repo = JasperCompileManager.compileReport(templatePath + "report1.jrxml");
             JasperPrint jp = JasperFillManager.fillReport(repo, p, new JREmptyDataSource());
 
             // ResponseEntity es una clase que permite dar una respuesta personalizada
-            return ResponseEntity
-                    .status(HttpStatus.CREATED)                       // 201 se usa cuando se genera algún recurso exitosamente
+            ResponseEntity<byte[]> re = ResponseEntity
+                    .status(HttpStatus.CREATED)                       // 201 cuando se genera algún recurso exitosamente
                     .contentType(MediaType.APPLICATION_PDF)           // indica que el contenido de la respuesta va a ser un PDF
-                    .body(JasperExportManager.exportReportToPdf(jp)); // el cuerpo de la respuesta
+                    .body(JasperExportManager.exportReportToPdf(jp)); // el cuerpo de la respuesta (el PDF)
+            log.info("[INFO] reporte generado con éxito");
+            return re;
+
+            } catch (NullPointerException e) {
+                  log.error("[ERROR] ocurrió un error: " + e.getMessage());
+                  return ResponseEntity.badRequest().build(); // 400 cuando los datos pasados tienen mala sintaxis
+            } catch (JRException je) {
+                  log.error("[ERROR] ocurrió un error al construir el PDF: " + je.getMessage());
+                  return ResponseEntity.internalServerError().build(); // 500 cuando ocurre un fallo por parte del servidor
+            }
       }
 
       @PostMapping("doc2")
-      public ResponseEntity<byte[]> genRepo2(@RequestBody Reporte2 params) throws JRException {
+      public ResponseEntity<byte[]> genRepo2(@RequestBody Reporte2 params) {
+            try {
+
             LocalDate ldt = LocalDate.now();
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yy");
 
@@ -65,14 +80,31 @@ public class Controller {
             p.put("dia_emision", dtf.format(ldt));
             p.put("validacion", params.validacion);
             p.put("validez", dtf.format(ldt.plusMonths(3).minusDays(10)));
+            checkParameters(p);
 
             JasperReport repo = JasperCompileManager.compileReport(templatePath + "report2.jrxml");
             JasperPrint jp = JasperFillManager.fillReport(repo, p, new JREmptyDataSource());
 
-            return ResponseEntity
+            ResponseEntity<byte[]> re = ResponseEntity
                     .status(HttpStatus.CREATED)
                     .contentType(MediaType.APPLICATION_PDF)
                     .body(JasperExportManager.exportReportToPdf(jp));
+            log.info("[INFO] reporte generado con éxito");
+            return re;
+
+            } catch (NullPointerException e) {
+                  log.error("[ERROR] ocurrió un error: " + e.getMessage());
+                  return ResponseEntity.badRequest().build();
+            } catch (JRException je) {
+                  log.error("[ERROR] ocurrió un error al construir el PDF: " + je.getMessage());
+                  return ResponseEntity.internalServerError().build();
+            }
+      }
+
+      private void checkParameters(HashMap<String, Object> params) throws NullPointerException {
+            params.forEach((k, v) -> {
+                  if (v == null) throw new NullPointerException("No se pudo construir el PDF a partir de estos valores: (" + k + " - " + v + ")");
+            });
       }
 
       // el getter hace falta, porque sino no puede leer la info que le pasamos
