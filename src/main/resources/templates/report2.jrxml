@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report2" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fd8397b4-0f31-4137-9c5d-bd95c33c0ebe">
+    <parameter name="dni" class="java.lang.String"/>
+    <parameter name="nombre_estudiante" class="java.lang.String"/>
+    <parameter name="clave" class="java.lang.String"/>
+    <parameter name="legajo" class="java.lang.String"/>
+    <parameter name="carrera" class="java.lang.String"/>
+    <parameter name="plan_estudios" class="java.lang.String"/>
+    <parameter name="fecha_examen" class="java.lang.String"/>
+    <parameter name="hora_apertura" class="java.lang.String"/>
+    <parameter name="dia_emision" class="java.lang.String"/>
+    <parameter name="validacion" class="java.lang.String"/>
+    <parameter name="validez" class="java.lang.String"/>
+    <parameter name="imageDir" class="java.lang.String"/>
+    <queryString>
+        <![CDATA[]]>
+    </queryString>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="79" splitType="Stretch">
+            <image>
+                <reportElement x="20" y="10" width="140" height="60" uuid="0e0bbbca-17ac-4e40-9f51-baf59e0a8ac1"/>
+                <imageExpression><![CDATA[$P{imageDir} + "logo1.png"]]></imageExpression>
+            </image>
+        </band>
+    </title>
+    <pageHeader>
+        <band height="68" splitType="Stretch">
+            <staticText>
+                <reportElement x="20" y="10" width="176" height="20" uuid="c3559cc7-071c-4624-ae33-ec6de33e2610"/>
+                <textElement>
+                    <font fontName="Calibri" size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[CONSTANCIA DE EXAMEN FINAL]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="20" y="40" width="280" height="20" uuid="422a4cba-b6c6-4494-8154-6b4cd7d118dc"/>
+                <textElement>
+                    <font fontName="Calibri" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{nombre_estudiante} + "  (DNI " + $P{dni} + ")"]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="400" y="10" width="144" height="20" uuid="de422ade-16e2-46d9-9eba-54e124781b09"/>
+                <textElement textAlignment="Right">
+                    <font fontName="Calibri" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA["CLAVE: " + $P{clave}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="400" y="40" width="144" height="20" uuid="522a5d33-05f8-4096-a7e3-8496fa6befd1"/>
+                <textElement textAlignment="Right">
+                    <font fontName="Calibri" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA["LEGAJO: " + $P{legajo}]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageHeader>
+    <columnHeader>
+        <band height="66" splitType="Stretch">
+            <staticText>
+                <reportElement x="20" y="7" width="524" height="54" uuid="945f87a6-f53a-4c59-a5bc-1de3088623f0"/>
+                <textElement>
+                    <font fontName="Calibri" size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[A solicitud del interesado, y a los efectos de ser presentada ante QUIEN CORRESPONDA, se deja constancia que el
+estudiante, cuyos datos personales antes se consignan, ha rendido su examen final en la asignatura y días que se
+detalla:]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="210" splitType="Stretch">
+            <textField>
+                <reportElement x="20" y="1" width="524" height="15" uuid="1e3cbe72-9a90-4f58-ad50-9024a23ad3a7">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <textElement textAlignment="Left">
+                    <font fontName="Calibri" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Carrera: " + $P{carrera}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="20" y="16" width="524" height="15" uuid="f9e803c7-0e83-4619-94cb-141cc2f0e217">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <textElement textAlignment="Left">
+                    <font fontName="Calibri" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Asignatura del plan de estudios: " + $P{plan_estudios}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="20" y="30" width="524" height="15" uuid="d6a487a1-a680-4897-b338-818c9df00c19">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <textElement textAlignment="Left">
+                    <font fontName="Calibri" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Fecha del examen: " + $P{fecha_examen}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="20" y="45" width="524" height="15" uuid="02dfe994-37bc-4b76-81a1-b3e0c75c4de4">
+                    <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                </reportElement>
+                <textElement textAlignment="Left">
+                    <font fontName="Calibri" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Hora de apertura de la mesa examinadora: " + $P{hora_apertura}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="20" y="70" width="524" height="32" uuid="f37a8d6f-337c-463a-b451-d245e0cf23c2"/>
+                <textElement textAlignment="Left">
+                    <font fontName="Calibri" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Se extiende el presente en Córdoba, Argentina, a los " + $P{dia_emision} + "."]]></textFieldExpression>
+            </textField>
+            <image>
+                <reportElement x="40" y="110" width="85" height="80" uuid="3be09efe-f530-4156-bab3-35c235d43c1d"/>
+                <imageExpression><![CDATA[$P{imageDir} + "rickroll.png"]]></imageExpression>
+            </image>
+            <textField>
+                <reportElement x="220" y="110" width="280" height="20" uuid="e63e02d8-91a5-4f40-900b-9eb50f707a03"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Calibri" size="8" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA["CÓDIGO DE VALIDACIÓN: " + $P{validacion}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="160" y="130" width="384" height="50" uuid="37267677-c1be-44c2-918a-d518b8a76125"/>
+                <textElement textAlignment="Left" verticalAlignment="Top">
+                    <font fontName="Calibri" size="8" isBold="false" isItalic="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Es posible validar esta constancia escaneando el código QR o bien ingresando a https://siuc2.ucc.edu.ar/valida_ucc.php, completando el código de validación y el número de documento del interesado. Este certificado tiene validéz hasta el " + $P{validez}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <columnFooter>
+        <band height="120" splitType="Stretch"/>
+    </columnFooter>
+    <pageFooter>
+        <band height="54" splitType="Stretch"/>
+    </pageFooter>
+    <summary>
+        <band height="42" splitType="Stretch"/>
+    </summary>
+</jasperReport>
