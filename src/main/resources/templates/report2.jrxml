@@ -32,28 +32,28 @@
             <staticText>
                 <reportElement x="20" y="10" width="176" height="20" uuid="c3559cc7-071c-4624-ae33-ec6de33e2610"/>
                 <textElement>
-                    <font fontName="Calibri" size="10" isBold="true"/>
+                    <font fontName="DejaVu Sans" size="8" isBold="true"/>
                 </textElement>
                 <text><![CDATA[CONSTANCIA DE EXAMEN FINAL]]></text>
             </staticText>
             <textField>
                 <reportElement x="20" y="40" width="280" height="20" uuid="422a4cba-b6c6-4494-8154-6b4cd7d118dc"/>
                 <textElement>
-                    <font fontName="Calibri" isBold="true"/>
+                    <font fontName="DejaVu Sans" size="8" isBold="true"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$P{nombre_estudiante} + "  (DNI " + $P{dni} + ")"]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement x="400" y="10" width="144" height="20" uuid="de422ade-16e2-46d9-9eba-54e124781b09"/>
                 <textElement textAlignment="Right">
-                    <font fontName="Calibri" isBold="true"/>
+                    <font fontName="DejaVu Sans" size="8" isBold="true"/>
                 </textElement>
                 <textFieldExpression><![CDATA["CLAVE: " + $P{clave}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement x="400" y="40" width="144" height="20" uuid="522a5d33-05f8-4096-a7e3-8496fa6befd1"/>
                 <textElement textAlignment="Right">
-                    <font fontName="Calibri" isBold="true"/>
+                    <font fontName="DejaVu Sans" size="8" isBold="true"/>
                 </textElement>
                 <textFieldExpression><![CDATA["LEGAJO: " + $P{legajo}]]></textFieldExpression>
             </textField>
@@ -64,7 +64,7 @@
             <staticText>
                 <reportElement x="20" y="7" width="524" height="54" uuid="945f87a6-f53a-4c59-a5bc-1de3088623f0"/>
                 <textElement>
-                    <font fontName="Calibri" size="10" isBold="true"/>
+                    <font fontName="DejaVu Sans" size="8" isBold="true"/>
                 </textElement>
                 <text><![CDATA[A solicitud del interesado, y a los efectos de ser presentada ante QUIEN CORRESPONDA, se deja constancia que el
 estudiante, cuyos datos personales antes se consignan, ha rendido su examen final en la asignatura y días que se
@@ -79,7 +79,7 @@ detalla:]]></text>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
                 <textElement textAlignment="Left">
-                    <font fontName="Calibri" isBold="true"/>
+                    <font fontName="DejaVu Sans" size="8" isBold="true"/>
                 </textElement>
                 <textFieldExpression><![CDATA["Carrera: " + $P{carrera}]]></textFieldExpression>
             </textField>
@@ -88,7 +88,7 @@ detalla:]]></text>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
                 <textElement textAlignment="Left">
-                    <font fontName="Calibri" isBold="true"/>
+                    <font fontName="DejaVu Sans" size="8" isBold="true"/>
                 </textElement>
                 <textFieldExpression><![CDATA["Asignatura del plan de estudios: " + $P{plan_estudios}]]></textFieldExpression>
             </textField>
@@ -97,7 +97,7 @@ detalla:]]></text>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
                 <textElement textAlignment="Left">
-                    <font fontName="Calibri" isBold="true"/>
+                    <font fontName="DejaVu Sans" size="8" isBold="true"/>
                 </textElement>
                 <textFieldExpression><![CDATA["Fecha del examen: " + $P{fecha_examen}]]></textFieldExpression>
             </textField>
@@ -106,14 +106,14 @@ detalla:]]></text>
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
                 <textElement textAlignment="Left">
-                    <font fontName="Calibri" isBold="true"/>
+                    <font fontName="DejaVu Sans" size="8" isBold="true"/>
                 </textElement>
                 <textFieldExpression><![CDATA["Hora de apertura de la mesa examinadora: " + $P{hora_apertura}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement x="20" y="70" width="524" height="32" uuid="f37a8d6f-337c-463a-b451-d245e0cf23c2"/>
                 <textElement textAlignment="Left">
-                    <font fontName="Calibri" isBold="true"/>
+                    <font fontName="DejaVu Sans" size="8" isBold="true"/>
                 </textElement>
                 <textFieldExpression><![CDATA["Se extiende el presente en Córdoba, Argentina, a los " + $P{dia_emision} + "."]]></textFieldExpression>
             </textField>
@@ -124,14 +124,14 @@ detalla:]]></text>
             <textField>
                 <reportElement x="220" y="110" width="280" height="20" uuid="e63e02d8-91a5-4f40-900b-9eb50f707a03"/>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="Calibri" size="8" isBold="true"/>
+                    <font fontName="DejaVu Sans" size="7" isBold="true"/>
                 </textElement>
                 <textFieldExpression><![CDATA["CÓDIGO DE VALIDACIÓN: " + $P{validacion}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement x="160" y="130" width="384" height="50" uuid="37267677-c1be-44c2-918a-d518b8a76125"/>
                 <textElement textAlignment="Left" verticalAlignment="Top">
-                    <font fontName="Calibri" size="8" isBold="false" isItalic="true"/>
+                    <font fontName="DejaVu Sans" size="7" isBold="false" isItalic="true"/>
                 </textElement>
                 <textFieldExpression><![CDATA["Es posible validar esta constancia escaneando el código QR o bien ingresando a https://siuc2.ucc.edu.ar/valida_ucc.php, completando el código de validación y el número de documento del interesado. Este certificado tiene validéz hasta el " + $P{validez}]]></textFieldExpression>
             </textField>

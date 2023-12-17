@@ -30,6 +30,7 @@ public class Controller {
             LocalDateTime fecha = LocalDateTime.now();
             DateTimeFormatter df = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm");
 
+            // este hashmap son los parámetros del formulario
             HashMap<String, Object> p = new HashMap<>();
 
             // classpath es el directorio resources
@@ -53,7 +54,7 @@ public class Controller {
             } catch (NullPointerException e) {
                   log.error("[ERROR] ocurrió un error: " + e.getMessage());
                   return ResponseEntity.badRequest().build(); // 400 cuando los datos pasados tienen mala sintaxis
-            } catch (JRException je) {
+            } catch (Exception je) {
                   log.error("[ERROR] ocurrió un error al construir el PDF: " + je.getMessage());
                   return ResponseEntity.internalServerError().build(); // 500 cuando ocurre un fallo por parte del servidor
             }
@@ -95,7 +96,7 @@ public class Controller {
             } catch (NullPointerException e) {
                   log.error("[ERROR] ocurrió un error: " + e.getMessage());
                   return ResponseEntity.badRequest().build();
-            } catch (JRException je) {
+            } catch (Exception je) {
                   log.error("[ERROR] ocurrió un error al construir el PDF: " + je.getMessage());
                   return ResponseEntity.internalServerError().build();
             }
