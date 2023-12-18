@@ -6,26 +6,34 @@ import net.sf.jasperreports.engine.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("/api")
 @Slf4j
 public class Controller {
 
-      private final String templatePath = "src/main/resources/templates/";
+      @GetMapping
+      public ResponseEntity<byte[]> helpPage() throws IOException {
+            log.info("[INFO] mostrando la página de ayuda");
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .contentType(MediaType.TEXT_HTML)
+                    .body(FileCopyUtils.copyToByteArray(getClass().getResourceAsStream("/static/helppage.html")));
+      }
 
-      @PostMapping("doc1")
+      @PostMapping("/doc1")
       public ResponseEntity<byte[]> genRepo1(@RequestBody Reporte1 params) {
             try {
+
+            log.info("[INFO] construyendo reporte 1");
 
             LocalDateTime fecha = LocalDateTime.now();
             DateTimeFormatter df = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm");
@@ -40,7 +48,8 @@ public class Controller {
             p.put("total", params.total);
             checkParameters(p);
 
-            JasperReport repo = JasperCompileManager.compileReport(templatePath + "report1.jrxml");
+            // getResourceAsStream() obtiene un recurso ubicado en src/main/resources
+            JasperReport repo = JasperCompileManager.compileReport(getClass().getResourceAsStream("/templates/report1.jrxml"));
             JasperPrint jp = JasperFillManager.fillReport(repo, p, new JREmptyDataSource());
 
             // ResponseEntity es una clase que permite dar una respuesta personalizada
@@ -48,7 +57,7 @@ public class Controller {
                     .status(HttpStatus.CREATED)                       // 201 cuando se genera algún recurso exitosamente
                     .contentType(MediaType.APPLICATION_PDF)           // indica que el contenido de la respuesta va a ser un PDF
                     .body(JasperExportManager.exportReportToPdf(jp)); // el cuerpo de la respuesta (el PDF)
-            log.info("[INFO] reporte generado con éxito");
+            log.info("[INFO] reporte 1 generado con éxito");
             return re;
 
             } catch (NullPointerException e) {
@@ -60,9 +69,11 @@ public class Controller {
             }
       }
 
-      @PostMapping("doc2")
+      @PostMapping("/doc2")
       public ResponseEntity<byte[]> genRepo2(@RequestBody Reporte2 params) {
             try {
+
+            log.info("[INFO] construyendo reporte 2");
 
             LocalDate ldt = LocalDate.now();
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yy");
@@ -71,11 +82,11 @@ public class Controller {
 
             p.put("imageDir", "classpath:/static/");
             p.put("dni", params.dni);
-            p.put("nombre_estudiante", params.nombre_estudiante);
+            p.put("nombre_estudiante", params.nombre_estudiante.toUpperCase());
             p.put("clave", params.clave);
             p.put("legajo", params.legajo);
-            p.put("carrera", params.carrera);
-            p.put("plan_estudios", params.plan_estudios);
+            p.put("carrera", params.carrera.toUpperCase());
+            p.put("plan_estudios", params.plan_estudios.toUpperCase());
             p.put("fecha_examen", params.fecha_examen);
             p.put("hora_apertura", params.hora_apertura);
             p.put("dia_emision", dtf.format(ldt));
@@ -83,14 +94,14 @@ public class Controller {
             p.put("validez", dtf.format(ldt.plusMonths(3).minusDays(10)));
             checkParameters(p);
 
-            JasperReport repo = JasperCompileManager.compileReport(templatePath + "report2.jrxml");
+            JasperReport repo = JasperCompileManager.compileReport(getClass().getResourceAsStream("/templates/report2.jrxml"));
             JasperPrint jp = JasperFillManager.fillReport(repo, p, new JREmptyDataSource());
 
             ResponseEntity<byte[]> re = ResponseEntity
                     .status(HttpStatus.CREATED)
                     .contentType(MediaType.APPLICATION_PDF)
                     .body(JasperExportManager.exportReportToPdf(jp));
-            log.info("[INFO] reporte generado con éxito");
+            log.info("[INFO] reporte 2 generado con éxito");
             return re;
 
             } catch (NullPointerException e) {

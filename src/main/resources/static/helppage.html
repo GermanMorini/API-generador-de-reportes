@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ayuda</title>
+</head>
+<body>
+    <h1>¿Como usar esta API?</h1>
+    Enviá a alguna de las siguientes direcciones una petición POST con los datos indicados
+    <div>
+        <h2>/api/doc1</h2>
+        <p>Genera un pequeño comprobante</p>
+        <pre>
+            {
+                "comprobante_id":"57d078a6-9679-4f5b-b6ad-e8bb47aa4fe0",
+                "total":"420.069"
+            }
+        </pre>
+        <br>
+        <h2>/api/doc2</h2>
+        <p>Genera un comprobante de asistencia a un parcial</p>
+        <p>La fecha de creación no se puede especificar, usa la hora actual</p>
+        <pre>
+            {
+                "dni":"42042069",
+                "nombre_estudiante":"NOMBRE APELLIDO",
+                "clave":"4206988",
+                "legajo":"42069",
+                "carrera":"CARRERA",
+                "plan_estudios":"MATERIA",
+                "fecha_examen":"01/01/01",
+                "hora_apertura":"08:00",
+                "validacion":"19689976247658417182"
+            }
+        </pre>
+    </div>
+</body>
+</html>
