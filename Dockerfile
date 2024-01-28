@@ -1,8 +1,10 @@
 # indica la imagen que se va a usar para crear el contenedor
 FROM openjdk:21
 
-# crea un directorio dentro del contenedor
-VOLUME /tmp
+# (No se puede usar para desplegar en Railway)
+# Crea un punto de montaje que se usará para compartír datos entre el host/contenedor, o entre contenedores
+# Los datos almacenados acá persisten cuando el contenedor se detiene, y no serán incluidos en las imágenes
+#VOLUME /tmp
 
 # variables de entorno y configuraciónes
 ENV IMG_PATH=/img
